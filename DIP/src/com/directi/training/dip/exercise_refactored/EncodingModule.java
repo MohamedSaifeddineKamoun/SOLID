@@ -10,7 +10,7 @@ import java.io.InputStreamReader;
 import java.net.URL;
 import java.util.Base64;
 
-public class EncodingModule
+public class EncodingModule implements IEncodingModule
 {
     public void encodeWithFiles() throws IOException
     {
@@ -36,7 +36,7 @@ public class EncodingModule
         }
     }
 
-    public void encodeBasedOnNetworkAndDatabase() throws IOException
+    public void encodeBasedOnNetworkAndDatabase(Database database) throws IOException
     {
         URL url;
         url = new URL("http", "myfirstappwith.appspot.com", "/index.html");
@@ -52,7 +52,7 @@ public class EncodingModule
         }
         String inputString = inputString1.toString();
         String encodedString = Base64.getEncoder().encodeToString(inputString.getBytes());
-        MyDatabase database = new MyDatabase();
+        
         database.write(encodedString);
     }
 }
